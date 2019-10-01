@@ -53,16 +53,15 @@ Workspaces are single-node and multi-node CPU/GPU clusters with **read-only** ac
 
 ## Installing pip, conda, and apt packages
 
-### Installing pip packages
-
+### Open a terminal
 ![terminal](https://tljh.jupyter.org/en/latest/_images/new-terminal-button2.png)
 
+### Installing pip packages
+Open a terminal and install the package at the terminal
 `pip install --user <package name>`
 
 ### Installing conda packages
-
-![terminal](https://tljh.jupyter.org/en/latest/_images/new-terminal-button2.png)
-
+Open a terminal and install the package at the terminal
 `sudo /opt/conda/bin/conda install -c <channel> <package name>`
 
 ## Support or Contact
