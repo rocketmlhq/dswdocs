@@ -6,7 +6,7 @@ Data Scientist's work is done in a project, which is a collection of workspaces 
 
 ## Projects
 
-Users can create 
+### Project Files
 
 ## Workspaces
 
