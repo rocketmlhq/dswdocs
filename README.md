@@ -44,12 +44,32 @@ Workspaces are single-node and multi-node CPU/GPU clusters with **read-only** ac
 
 ### Corporate Data Sources
 
+A convenient Data Explorer functionality is offerred on DSW to view available data sources, datasets.
+
+Corporate data sources are populated by Admins of DSW application with IT departments help and consent.
+These data sources and datasets can be viewed and accessed via DSW application within a Workspace.
+The steps to access this data for machine learning and data science is described below (later).
+
+Mainly two types of Data Sources are  available 
+- Object Stores (S3 buckets) for files (both structured and unstructured)
+- Databases (structured)
+
+Data from these sources can be ingested directly from Workspaces of any project.
+
 ### RocketML Seed Data
 
-### Data on Internet
+RocketML provides a few popular public datasets as `seed data` for DSW users to get started quickly. These datasets are **read only** for the users. However admins can disable access to these.
+
+### Data Elsewhere
 
 ## JupyterLab Documentation
 [![Jupyter Lab Documentation](http://img.youtube.com/vi/y30fs6kg6fc/0.jpg)](https://www.youtube.com/playlist?list=PLUrHeD2K9CmlEvyGGgZXDf_u31MvLB_Lg "Jupyter Lab Documentation")
+
+### Moving ingested data from workspace to project
+Data Elsewhere
+
+### Moving ingested data from project to workspace
+Data elsewhere
 
 ## Installing pip, conda, and apt packages
 
