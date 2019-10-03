@@ -2,6 +2,12 @@
 
 RocketML Data Science Workbench (DSW) is a machine learning (ML) platform to enable Data scientists and ML engineers across your organization to easily build and deploy ML solutions at scale. 
 
+RocketML can be accessed via a browser at an URL given out by your IT department. Authentication into RocketML system is through single sign on setup implemented by your IT department.
+
+Once user is logged into RocketML system. They will see a home page as shown below:
+```embed an image here```
+
+We advice users to start by clicking on the **Project** button
 
 ## Projects
 Data Scientist's work is done in a project, which is a collection of workspaces and project files.
