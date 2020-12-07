@@ -1,3 +1,4 @@
 docs/env
 tutorials/.ipynb_checkpoints/
 tutorials/dask-worker-space/
+testing/s3-connectivity-test/__pycache__
