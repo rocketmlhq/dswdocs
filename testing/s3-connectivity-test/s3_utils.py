@@ -1,4 +1,5 @@
 import boto3
+
 def get_matching_s3_objects(bucket, prefix="", suffix=""):
     """
     Generate objects in an S3 bucket.
