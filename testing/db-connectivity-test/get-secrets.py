@@ -12,13 +12,19 @@ import boto3
 import base64
 import requests
 import json
+import argparse
+
+default_secret = "arn:aws:secretsmanager:us-west-2:399991052688:secret:MariaDBCreds-RBiK6E"
+parser = argparse.ArgumentParser()
+parser.add_argument("--secret",type=str,help="Secret ARN",default=default_secret)
+args = parser.parse_args()
+
+
+secret_arn = args.secret
 
 session = boto3.session.Session()
 client = session.client('secretsmanager','us-west-2')
- 
-#response = client.get_secret_value(SecretId='arn:aws:secretsmanager:us-west-2:399991052688:secret:rmltestByAsc-b4gBPd') 
-response = client.get_secret_value(SecretId='arn:aws:secretsmanager:us-west-2:399991052688:secret:RmlTestSecret-7YY5L9') 
-data = json.loads(response['SecretString'])
 
-print ('user name : ' + data['username'])
-print ('user name : ' +data['password'])
+response = client.get_secret_value(SecretId=secret_arn)
+data = json.loads(response['SecretString'])
+print(data)

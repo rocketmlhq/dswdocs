@@ -1,2 +1,7 @@
 docs/env
 .ipynb_checkpoints/
+tutorials/.ipynb_checkpoints/
+tutorials/dask-worker-space/
+testing/s3-connectivity-test/__pycache__/*.pyc
+testing/db-connectivity-test/.ipynb_checkpoints/
+
