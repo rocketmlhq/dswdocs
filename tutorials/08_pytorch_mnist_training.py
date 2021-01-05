@@ -8,6 +8,8 @@
 #
 # Code based on https://github.com/lanpa/tensorboard-pytorch-examples/blob/master/mnist/main.py.
 #
+# Custom PytorchModelWrapper to load image bytestring list as input
+
 import argparse
 import os
 import mlflow
@@ -69,6 +71,8 @@ test_loader = torch.utils.data.DataLoader(
                    ])),
     batch_size=args.test_batch_size, shuffle=True, **kwargs)
 
+
+## Setting up Mlflow Experiment
 experiment_name = "pytorch_exp_1"
 tracking_uri = os.environ.get("TRACKING_URL")
 client = MlflowClient(tracking_uri=tracking_uri)
@@ -85,6 +89,7 @@ if experiment_name not in experiment_names:
         pass
 mlflow.set_experiment(experiment_name)
 
+## Neural Network Module
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -120,6 +125,7 @@ if args.cuda:
 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 
 writer = None # Will be used to write TensorBoard events
+
 
 def train(epoch):
     model.train()
@@ -167,6 +173,7 @@ def log_scalar(name, value, step):
     writer.add_scalar(name, value, step)
     mlflow.log_metric(name, value)
 
+## Pytorch Model Wrapper that takes encoded image strings as inputs
 class PytorchModelWrapper(mlflow.pyfunc.PythonModel):
     def load_context(self,context):
         import torch
@@ -193,7 +200,8 @@ class PytorchModelWrapper(mlflow.pyfunc.PythonModel):
         predictions = self.model(torch_tensor).data.max(1)[1]
         return predictions.detach().numpy()
 
-def add_libraries_to_pip(_conda_env,libraries=[],conda_dependencies=[]):
+## Utility function to add libraries to conda environment
+def add_libraries_to_conda_env(_conda_env,libraries=[],conda_dependencies=[]):
     dependencies = _conda_env["dependencies"]
     dependencies = dependencies + conda_dependencies
     pip_index = None
@@ -206,6 +214,7 @@ def add_libraries_to_pip(_conda_env,libraries=[],conda_dependencies=[]):
     _conda_env["dependencies"] = dependencies
     return _conda_env
 
+## Start MLflow Run
 with mlflow.start_run():
     # Log our parameters into mlflow
     for key, value in vars(args).items():
@@ -234,7 +243,7 @@ with mlflow.start_run():
     model_artifacts = {"scripted_model" : "scripted_model.pth"}
     pyfunc_pytorch_model = PytorchModelWrapper()
     conda_env = mlflow.pytorch.get_default_conda_env()
-    conda_env = add_libraries_to_pip(conda_env,libraries=["typing-extensions"],conda_dependencies=["cpuonly"])
+    conda_env = add_libraries_to_conda_env(conda_env,libraries=["typing-extensions"],conda_dependencies=["cpuonly"])
 #     mlflow.pytorch.log_model(scripted_model, artifact_path="pytorch-model")
     mlflow.pyfunc.log_model("pytorch-model",python_model=pyfunc_pytorch_model,artifacts=model_artifacts,conda_env=conda_env)
     print(

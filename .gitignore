@@ -5,3 +5,5 @@ tutorials/dask-worker-space/
 testing/s3-connectivity-test/__pycache__/*.pyc
 testing/db-connectivity-test/.ipynb_checkpoints/
 tutorials/*.tar.gz
+data/
+*.pth
